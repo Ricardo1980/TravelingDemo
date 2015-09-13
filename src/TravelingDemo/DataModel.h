@@ -10,5 +10,5 @@
 
 @interface DataModel : NSObject
 @property (strong, nonatomic) NSMutableArray* boardingCards;
--(void) applyTopologicalOrder;
+-(NSError*) applyTopologicalOrder;
 @end

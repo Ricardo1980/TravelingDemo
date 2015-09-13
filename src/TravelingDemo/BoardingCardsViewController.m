@@ -31,7 +31,13 @@ static const NSTimeInterval kAnimationDuration=0.75;
 
 - (IBAction)onSortBoardingPassesButtonPressed:(UIButton *)sender {
     
-    [self.dataModel applyTopologicalOrder];
+    NSError *error=[self.dataModel applyTopologicalOrder];
+    if (error!=nil) {
+        UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
     [self.tableView reloadData];
     
     self.infoLabel.text=@"Sorted Trips";
